@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cdasoe15rhxaa"]
+
+[node name="Paredes" type="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04778, 4.20241, 1.14219)
+use_collision = true
+collision_mask = 3
+size = Vector3(2, 10, 30)

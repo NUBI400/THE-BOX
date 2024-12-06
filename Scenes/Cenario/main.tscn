@@ -1,0 +1,120 @@
+[gd_scene load_steps=9 format=3 uid="uid://c1o4e213kp3qd"]
+
+[ext_resource type="PackedScene" uid="uid://b04aejitqf5do" path="res://Scenes/Paredes etc/env.tscn" id="1_epise"]
+[ext_resource type="PackedScene" uid="uid://dpcbmmyqgi318" path="res://Scenes/Player/player.tscn" id="2_7ky14"]
+[ext_resource type="PackedScene" uid="uid://cmnawoio44wx4" path="res://Scenes/Paredes etc/Pisogenerico.tscn" id="3_b8xoc"]
+[ext_resource type="Material" uid="uid://b7alcmlv31y7" path="res://Material/Banheiro_material_3d.tres" id="4_cjxm6"]
+[ext_resource type="PackedScene" uid="uid://cdasoe15rhxaa" path="res://Scenes/Paredes etc/paredes.tscn" id="5_6cjou"]
+[ext_resource type="PackedScene" uid="uid://c5xu38ua7e3up" path="res://Scenes/Paredes etc/Killarea.tscn" id="6_rma1c"]
+[ext_resource type="PackedScene" uid="uid://c7ffh67801vmt" path="res://Scenes/Paredes etc/paredes_falsas.tscn" id="7_5w8eb"]
+[ext_resource type="PackedScene" uid="uid://dto3cirr6wj5r" path="res://Scenes/Paredes etc/bloco_jamv.tscn" id="8_uq1yf"]
+
+[node name="World" type="Node3D"]
+
+[node name="Env" parent="." instance=ExtResource("1_epise")]
+
+[node name="Player" parent="." instance=ExtResource("2_7ky14")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.493, 0.2, 0)
+
+[node name="Construção" type="Node" parent="."]
+
+[node name="Piso1" parent="Construção" instance=ExtResource("3_b8xoc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.7159, 0, 1.20001)
+size = Vector3(23.8, 1, 22)
+material = ExtResource("4_cjxm6")
+
+[node name="Ponte" parent="Construção" instance=ExtResource("3_b8xoc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.54, 4.99885, 0, 0.95001)
+size = Vector3(24, 1, 21.9)
+material = ExtResource("4_cjxm6")
+
+[node name="Cilindro cenario" type="CSGCylinder3D" parent="Construção"]
+transform = Transform3D(2.58096e-08, 0.866025, -0.5, -1, 2.98023e-08, 0, 1.49012e-08, 0.5, 0.866025, 59, 2, 10)
+use_collision = true
+collision_mask = 7
+radius = 0.71
+height = 10.0
+material = ExtResource("4_cjxm6")
+
+[node name="Bloco" parent="Construção" instance=ExtResource("3_b8xoc")]
+transform = Transform3D(0.259808, 0.5, 0, -0.15, 0.866025, 0, 0, 0, 0.0972, 21.4988, 0, 3.95001)
+size = Vector3(7, 1, 21.9)
+material = ExtResource("4_cjxm6")
+
+[node name="Bloco2" parent="Construção" instance=ExtResource("3_b8xoc")]
+transform = Transform3D(-0.256066, 0.146447, -0.0486, 0.043934, -0.853553, -0.0486, -0.15, -0.5, 0.0687308, 30.4988, 0, -3.04999)
+size = Vector3(7, 1, 21.9)
+material = ExtResource("4_cjxm6")
+
+[node name="Bloco3" parent="Construção" instance=ExtResource("3_b8xoc")]
+transform = Transform3D(0.259808, -0.5, 0, 0.15, 0.866025, 0, 0, 0, 0.0972, 40.4988, 2, 1.95001)
+size = Vector3(7, 1, 21.9)
+material = ExtResource("4_cjxm6")
+
+[node name="Bloco4" parent="Construção" instance=ExtResource("3_b8xoc")]
+transform = Transform3D(0.259808, -0.5, 0, 0.15, 0.866025, 0, 0, 0, 0.0972, 48.4988, 6, 2.95001)
+size = Vector3(7, 1, 21.9)
+material = ExtResource("4_cjxm6")
+
+[node name="teto" parent="Construção" instance=ExtResource("3_b8xoc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0006, 9.63628, 1.03404)
+material_override = ExtResource("4_cjxm6")
+size = Vector3(22.0795, 1, 21.6166)
+
+[node name="Paredes" parent="Construção" instance=ExtResource("5_6cjou")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.9132, 5.28482, 1.16682)
+size = Vector3(2, 9.76563, 22)
+material = ExtResource("4_cjxm6")
+
+[node name="Paredes2" parent="Construção" instance=ExtResource("5_6cjou")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16.9918, 4.58756, 11.2022)
+size = Vector3(2, 11, 20.4)
+material = ExtResource("4_cjxm6")
+
+[node name="Paredes3" parent="Construção" instance=ExtResource("5_6cjou")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16.9571, 5.21066, -8.79381)
+size = Vector3(2, 10, 20)
+material = ExtResource("4_cjxm6")
+
+[node name="obstaculo agachado1" parent="Construção" instance=ExtResource("3_b8xoc")]
+transform = Transform3D(0.3, 2.08616e-07, 0, 1.78814e-07, 1, 0, 0, 0, 0.0972, -8.0112, 1.7593, 1.30295)
+size = Vector3(5, 1, 99)
+material = ExtResource("4_cjxm6")
+
+[node name="Killarea" parent="Construção" instance=ExtResource("6_rma1c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 3, 0)
+
+[node name="Paredes false" parent="Construção" instance=ExtResource("7_5w8eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 4.5, 1.3)
+use_collision = false
+collision_layer = 0
+collision_mask = 0
+size = Vector3(2, 9, 21.8)
+
+[node name="Porta?" type="CSGCombiner3D" parent="Construção"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.8, 0, 0)
+use_collision = true
+collision_mask = 0
+
+[node name="Porta" parent="Construção/Porta?" instance=ExtResource("5_6cjou")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.9988, 5.30041, 0.755032)
+material_override = ExtResource("4_cjxm6")
+size = Vector3(2, 9.5968, 20.8937)
+material = ExtResource("4_cjxm6")
+
+[node name="Portacorte" parent="Construção/Porta?" instance=ExtResource("5_6cjou")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.9988, 2.78083, 1.23092)
+operation = 2
+size = Vector3(2, 5.27377, 8.64744)
+material = ExtResource("4_cjxm6")
+
+[node name="Luz sala inicial" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, -20, 9, 0)
+light_color = Color(0.811765, 0.815686, 0.945098, 1)
+shadow_enabled = true
+spot_range = 30.0
+spot_angle = 75.0
+
+[node name="BLOCO JAMV" parent="." instance=ExtResource("8_uq1yf")]
+transform = Transform3D(-4.37114e-08, -1, 0, -1, 4.37114e-08, 8.74228e-08, -8.74228e-08, 3.82137e-15, -1, -103.733, 0.5, 2.37458)
+size = Vector3(10, 0, 10)

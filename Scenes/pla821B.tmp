@@ -1,0 +1,187 @@
+[gd_scene load_steps=11 format=3 uid="uid://dpcbmmyqgi318"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_0xu1w"]
+[ext_resource type="BoxMesh" uid="uid://hgh37msk0nx5" path="res://Player/playerAGACHADO.tres" id="2_muhkj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i0lus"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2bpsw"]
+size = Vector3(1, 0.6, 1)
+
+[sub_resource type="Animation" id="Animation_pncry"]
+resource_name = "Jump"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpringArm3D/Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.0523599, 0, 0.0349066), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("SpringArm3D/Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.1, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_d11q5"]
+resource_name = "Landing"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpringArm3D/Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.0523599, 0, -0.0349066), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("SpringArm3D/Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.1, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_l7n5h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpringArm3D/Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpringArm3D/Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8igky"]
+resource_name = "Roll"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("SpringArm3D/Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.0349066), Vector3(-6.28319, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("SpringArm3D/Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.5, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_omy2r"]
+_data = {
+"Jump": SubResource("Animation_pncry"),
+"Landing": SubResource("Animation_d11q5"),
+"RESET": SubResource("Animation_l7n5h"),
+"Roll": SubResource("Animation_8igky")
+}
+
+[sub_resource type="SphereMesh" id="SphereMesh_1ltr7"]
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_0xu1w")
+
+[node name="Standing_collision_shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_i0lus")
+
+[node name="Crouching_collision_shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.799561, 0)
+shape = SubResource("BoxShape3D_2bpsw")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.245392, 0)
+target_position = Vector3(0, 2, 0)
+
+[node name="Nek" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="Head" type="Node3D" parent="Nek"]
+
+[node name="Eyes" type="Node3D" parent="Nek/Head"]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Nek/Head/Eyes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.639623)
+collision_mask = 7
+spring_length = 3.0
+margin = 0.5
+
+[node name="Camera3D" type="Camera3D" parent="Nek/Head/Eyes/SpringArm3D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Nek/Head/Eyes"]
+libraries = {
+"": SubResource("AnimationLibrary_omy2r")
+}
+
+[node name="Corpo" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+mesh = ExtResource("2_muhkj")
+
+[node name="Olho1" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.237434, 0, 0, 0, 0.195148, 0, 0, 0, 0.235975, 0.20599, 1.55929, -0.394162)
+visible = false
+mesh = SubResource("SphereMesh_1ltr7")
+
+[node name="Olho2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.237434, 0, 0, 0, 0.195148, 0, 0, 0, 0.235975, -0.144971, 1.55929, -0.394162)
+visible = false
+mesh = SubResource("SphereMesh_1ltr7")
+
+[node name="walljump coldawn" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="walljump coldawn" to="." method="_on_walljump_coldawn_timeout"]

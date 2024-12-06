@@ -1,0 +1,20 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://e6rgae2l1s7k"]
+
+[ext_resource type="Texture2D" uid="uid://c02anehxk4ktr" path="res://Material/BLACK/Fabric004_4K-JPG_Color.jpg" id="1_sne75"]
+[ext_resource type="Texture2D" uid="uid://cjnbx1kyhbe62" path="res://Material/Leather036D_4K-JPG/Leather036D_4K-JPG_AmbientOcclusion.jpg" id="2_gl47g"]
+[ext_resource type="Texture2D" uid="uid://cwth58ev36dcb" path="res://Material/BLACK/Fabric004_4K-JPG_Displacement.jpg" id="3_1rl2c"]
+[ext_resource type="Texture2D" uid="uid://cw0uo73tm2yso" path="res://Material/BLACK/Fabric004_4K-JPG_NormalGL.jpg" id="5_jwib7"]
+[ext_resource type="Texture2D" uid="uid://c5igenhohtelq" path="res://Material/BLACK/Fabric004_4K-JPG_Roughness.jpg" id="6_27a58"]
+
+[resource]
+transparency = 1
+albedo_color = Color(0.980392, 0.988235, 1, 1)
+albedo_texture = ExtResource("1_sne75")
+roughness_texture = ExtResource("6_27a58")
+emission_enabled = true
+normal_enabled = true
+normal_scale = 1.2
+normal_texture = ExtResource("5_jwib7")
+ao_texture = ExtResource("2_gl47g")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_1rl2c")

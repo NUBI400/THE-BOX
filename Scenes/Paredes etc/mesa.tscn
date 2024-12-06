@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvq53x066r0uw"]
+
+[ext_resource type="Texture2D" uid="uid://c5igenhohtelq" path="res://Material/BLACK/Fabric004_4K-JPG_Roughness.jpg" id="1_8qexr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xbxc4"]
+size = Vector3(1, 0.6, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_li0o5"]
+albedo_texture = ExtResource("1_8qexr")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xn3ar"]
+albedo_texture = ExtResource("1_8qexr")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p8a1a"]
+albedo_texture = ExtResource("1_8qexr")
+
+[node name="Mesa" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 3
+mass = 0.1
+gravity_scale = 0.0
+linear_velocity = Vector3(-1, 1, -1)
+
+[node name="Mesa" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = SubResource("BoxShape3D_xbxc4")
+
+[node name="Mesa444" type="CSGBox3D" parent="."]
+material_override = SubResource("StandardMaterial3D_li0o5")
+collision_layer = 5
+collision_mask = 7
+size = Vector3(1, 0.1, 1)
+material = SubResource("StandardMaterial3D_xn3ar")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Mesa444"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, -0.3, 0.4)
+size = Vector3(0.1, 0.6, 0.1)
+material = SubResource("StandardMaterial3D_p8a1a")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Mesa444"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.3, 0.4)
+size = Vector3(0.1, 0.6, 0.1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Mesa444"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, -0.3, -0.4)
+size = Vector3(0.1, 0.6, 0.1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Mesa444"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.3, -0.4)
+size = Vector3(0.1, 0.6, 0.1)

@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5xu38ua7e3up"]
+
+[ext_resource type="Material" uid="uid://bveefb48v1y6n" path="res://Material/voltarsala2material_material_3d.tres" id="1_hag2t"]
+
+[sub_resource type="GDScript" id="GDScript_lfdon"]
+script/source = "extends CSGBox3D
+
+@onready var collision_shape_3d = $Area3D/CollisionShape3D
+@onready var killarea = $\".\"
+
+
+
+func _process(delta):
+	collision_shape_3d.shape.size.x = killarea.size.x
+	collision_shape_3d.shape.size.y = killarea.size.y
+	collision_shape_3d.shape.size.z = killarea.size.z
+
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pvc4u"]
+
+[node name="Killarea" type="CSGBox3D"]
+collision_layer = 4
+collision_mask = 7
+material = ExtResource("1_hag2t")
+script = SubResource("GDScript_lfdon")
+
+[node name="Area3D" type="Area3D" parent="." groups=["killarea"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_pvc4u")

@@ -1,0 +1,560 @@
+[gd_scene load_steps=22 format=3 uid="uid://dq3mc35xan2sb"]
+
+[ext_resource type="PackedScene" uid="uid://b04aejitqf5do" path="res://Scenes/Paredes etc/env.tscn" id="1_wt8sc"]
+[ext_resource type="PackedScene" uid="uid://dpcbmmyqgi318" path="res://Scenes/Player/player.tscn" id="2_fwnxq"]
+[ext_resource type="PackedScene" uid="uid://cmnawoio44wx4" path="res://Scenes/Paredes etc/Pisogenerico.tscn" id="3_5bpfp"]
+[ext_resource type="Material" uid="uid://b7alcmlv31y7" path="res://Material/Banheiro_material_3d.tres" id="4_cklm2"]
+[ext_resource type="PackedScene" uid="uid://cdasoe15rhxaa" path="res://Scenes/Paredes etc/paredes.tscn" id="5_na1e3"]
+[ext_resource type="PackedScene" uid="uid://trt4fb328mwu" path="res://Scenes/Paredes etc/portaautomatica.tscn" id="6_r3vjd"]
+[ext_resource type="PackedScene" uid="uid://c5xu38ua7e3up" path="res://Scenes/Paredes etc/Killarea.tscn" id="7_w1gb5"]
+[ext_resource type="Material" uid="uid://bveefb48v1y6n" path="res://Material/voltarsala2material_material_3d.tres" id="8_178k4"]
+[ext_resource type="Script" path="res://Scripts/Killarea scripts/voltarsala2.gd" id="8_ec6he"]
+[ext_resource type="Texture2D" uid="uid://c4xo2hcjnen8s" path="res://Assets/E O JAMV.jpeg" id="8_mmdlf"]
+[ext_resource type="Material" uid="uid://cxupe2rjuo45u" path="res://Material/killarea_material_3d.tres" id="8_v2l2b"]
+[ext_resource type="Script" path="res://Scripts/Saidasala3.gd" id="9_p1ljn"]
+[ext_resource type="Script" path="res://Scripts/Killarea scripts/Killarea.gd" id="10_qehj7"]
+[ext_resource type="PackedScene" uid="uid://dvq53x066r0uw" path="res://Scenes/Paredes etc/mesa.tscn" id="13_amr7r"]
+[ext_resource type="PackedScene" uid="uid://dto3cirr6wj5r" path="res://Scenes/Paredes etc/bloco_jamv.tscn" id="15_0c3en"]
+
+[sub_resource type="Animation" id="Animation_dqf6h"]
+resource_name = "porta automatica"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.05, 2.0]
+}
+
+[sub_resource type="Animation" id="Animation_w2xgi"]
+resource_name = "porta automatica fechando"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 0.05]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ooyop"]
+_data = {
+"porta automatica": SubResource("Animation_dqf6h"),
+"porta automatica fechando": SubResource("Animation_w2xgi")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iicck"]
+size = Vector3(3, 5, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n3wm1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vq5b0"]
+size = Vector3(12, 1, 28)
+
+[node name="THE BOX" type="Node3D"]
+
+[node name="Env" parent="." instance=ExtResource("1_wt8sc")]
+
+[node name="Player" parent="." instance=ExtResource("2_fwnxq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1.2, -67)
+
+[node name="Construção" type="Node" parent="."]
+
+[node name="Mesa" parent="Construção" instance=ExtResource("13_amr7r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 8)
+mass = 1.0
+gravity_scale = -0.1
+linear_velocity = Vector3(0, -0.5, 0)
+
+[node name="Sala inicial" type="Node3D" parent="Construção"]
+
+[node name="Pisos" type="Node3D" parent="Construção/Sala inicial"]
+
+[node name="Piso1" parent="Construção/Sala inicial/Pisos" instance=ExtResource("3_5bpfp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+size = Vector3(25, 1, 25)
+material = ExtResource("4_cklm2")
+
+[node name="Paredes" type="Node3D" parent="Construção/Sala inicial"]
+
+[node name="Paredes" parent="Construção/Sala inicial/Paredes" instance=ExtResource("5_na1e3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5, 4.202, 0)
+size = Vector3(2, 10, 25)
+material = ExtResource("4_cklm2")
+
+[node name="Paredes2" parent="Construção/Sala inicial/Paredes" instance=ExtResource("5_na1e3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 4.202, 0)
+size = Vector3(2, 10, 25)
+material = ExtResource("4_cklm2")
+
+[node name="Paredes4" parent="Construção/Sala inicial/Paredes" instance=ExtResource("5_na1e3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.23517e-08, 4.202, 11.5)
+size = Vector3(2, 10, 25)
+material = ExtResource("4_cklm2")
+
+[node name="Portaautomatica" parent="Construção/Sala inicial/Paredes" instance=ExtResource("6_r3vjd")]
+
+[node name="Teto" type="Node3D" parent="Construção/Sala inicial"]
+
+[node name="Saidasala3" type="CSGCombiner3D" parent="Construção/Sala inicial/Teto"]
+use_collision = true
+collision_mask = 7
+script = ExtResource("9_p1ljn")
+
+[node name="Teto1" parent="Construção/Sala inicial/Teto/Saidasala3" instance=ExtResource("3_5bpfp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.7, 0)
+size = Vector3(25, 1, 25)
+material = ExtResource("4_cklm2")
+
+[node name="Buraco" type="CSGCylinder3D" parent="Construção/Sala inicial/Teto/Saidasala3"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0.0999999, 10.552, 7.2)
+operation = 2
+radius = 0.05
+height = 4.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Construção/Sala inicial/Teto/Saidasala3"]
+root_node = NodePath("../Buraco")
+libraries = {
+"": SubResource("AnimationLibrary_ooyop")
+}
+
+[node name="Areaabrir porta secreta" type="Area3D" parent="Construção/Sala inicial/Teto/Saidasala3"]
+collision_mask = 7
+
+[node name="colision" type="CollisionShape3D" parent="Construção/Sala inicial/Teto/Saidasala3/Areaabrir porta secreta"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.0010007, 7.4, 7.2)
+shape = SubResource("BoxShape3D_iicck")
+
+[node name="Jamv" type="Sprite3D" parent="Construção/Sala inicial/Teto"]
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, 2, 0, -2, -8.74228e-08, 0, 11, 7.4)
+texture = ExtResource("8_mmdlf")
+
+[node name="Luzes" type="Node3D" parent="Construção/Sala inicial"]
+
+[node name="Luz sala inicial" type="SpotLight3D" parent="Construção/Sala inicial/Luzes"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0)
+light_color = Color(0.811765, 0.815686, 0.945098, 1)
+shadow_enabled = true
+spot_range = 30.0
+spot_angle = 75.0
+
+[node name="Sala inicial2" type="Node3D" parent="Construção"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.9, 0)
+
+[node name="BLOCO JAMV" parent="Construção/Sala inicial2" instance=ExtResource("15_0c3en")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 1)
+size = Vector3(1, 1, 1)
+
+[node name="Pisos" type="Node3D" parent="Construção/Sala inicial2"]
+
+[node name="Paredes" type="Node3D" parent="Construção/Sala inicial2"]
+
+[node name="Paredes" parent="Construção/Sala inicial2/Paredes" instance=ExtResource("5_na1e3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5, 4.202, 0)
+size = Vector3(2, 10, 25)
+material = ExtResource("4_cklm2")
+
+[node name="Paredes2" parent="Construção/Sala inicial2/Paredes" instance=ExtResource("5_na1e3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 4.202, 0)
+size = Vector3(2, 10, 25)
+material = ExtResource("4_cklm2")
+
+[node name="Paredes4" parent="Construção/Sala inicial2/Paredes" instance=ExtResource("5_na1e3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.23517e-08, 4.202, 11.5)
+size = Vector3(2, 10, 25)
+material = ExtResource("4_cklm2")
+
+[node name="Portaautomatica" parent="Construção/Sala inicial2/Paredes" instance=ExtResource("6_r3vjd")]
+script = null
+
+[node name="Teto" type="Node3D" parent="Construção/Sala inicial2"]
+
+[node name="Teto1" parent="Construção/Sala inicial2/Teto" instance=ExtResource("3_5bpfp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.7, 0)
+size = Vector3(25, 1, 25)
+material = ExtResource("4_cklm2")
+
+[node name="Luzes" type="Node3D" parent="Construção/Sala inicial2"]
+
+[node name="Luz sala inicial" type="SpotLight3D" parent="Construção/Sala inicial2/Luzes"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0)
+light_color = Color(0.811765, 0.815686, 0.945098, 1)
+shadow_enabled = true
+spot_range = 30.0
+spot_angle = 75.0
+
+[node name="voltarsala2" type="CSGBox3D" parent="Construção/Sala inicial2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -1.9995)
+size = Vector3(21, 10, 0.001)
+material = ExtResource("8_178k4")
+script = ExtResource("8_ec6he")
+
+[node name="Area3D" type="Area3D" parent="Construção/Sala inicial2/voltarsala2" groups=["voltar sala inical"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Construção/Sala inicial2/voltarsala2/Area3D"]
+shape = SubResource("BoxShape3D_n3wm1")
+
+[node name="Sala 2" type="Node3D" parent="Construção"]
+
+[node name="Pisos" type="Node3D" parent="Construção/Sala 2"]
+
+[node name="Piso1" parent="Construção/Sala 2/Pisos" instance=ExtResource("3_5bpfp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.5)
+size = Vector3(10, 1, 8)
+material = ExtResource("4_cklm2")
+
+[node name="Piso2" parent="Construção/Sala 2/Pisos" instance=ExtResource("3_5bpfp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -54.6)
+size = Vector3(10, 1, 13)
+material = ExtResource("4_cklm2")
+
+[node name="Paredes" type="Node3D" parent="Construção/Sala 2"]
+
+[node name="Paredes" parent="Construção/Sala 2/Paredes" instance=ExtResource("5_na1e3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9, 4.352, -36.4)
+size = Vector3(2, 9.7, 48.6)
+material = ExtResource("4_cklm2")
+
+[node name="Paredes2" parent="Construção/Sala 2/Paredes" instance=ExtResource("5_na1e3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9, 4.352, -36.4)
+size = Vector3(2, 9.7, 48.6)
+material = ExtResource("4_cklm2")
+
+[node name="Portaautomatica" parent="Construção/Sala 2/Paredes" instance=ExtResource("6_r3vjd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48.3)
+
+[node name="Teto" type="Node3D" parent="Construção/Sala 2"]
+
+[node name="Teto1" parent="Construção/Sala 2/Teto" instance=ExtResource("3_5bpfp")]
+transform = Transform3D(0.39123, 0, 0, 0, 1, 0, 0, 0, 0.385, 0, 8.7, -36.481)
+size = Vector3(25, 1, 126.2)
+material = ExtResource("4_cklm2")
+
+[node name="Obstaculos" type="Node3D" parent="Construção/Sala 2"]
+
+[node name="Bloco" parent="Construção/Sala 2/Obstaculos" instance=ExtResource("3_5bpfp")]
+transform = Transform3D(0.259808, 0.5, 0, -0.15, 0.866025, 0, 0, 0, 0.0972, -1.5012, 0, -26.05)
+size = Vector3(7, 1, 21.9)
+material = ExtResource("4_cklm2")
+
+[node name="Bloco2" parent="Construção/Sala 2/Obstaculos" instance=ExtResource("3_5bpfp")]
+transform = Transform3D(0.259808, -0.5, 0, 0.15, 0.866025, 0, 0, 0, 0.0972, 2.4988, 0, -34.05)
+size = Vector3(7, 1, 21.9)
+material = ExtResource("4_cklm2")
+
+[node name="Bloco3" parent="Construção/Sala 2/Obstaculos" instance=ExtResource("3_5bpfp")]
+transform = Transform3D(0.3, 2.98023e-08, 0, 1.93715e-07, 1, 0, 0, 0, 0.0972, -1.7512, 2, -40.7741)
+size = Vector3(2, 1, 7)
+material = ExtResource("4_cklm2")
+
+[node name="Killarea" parent="Construção/Sala 2/Obstaculos" instance=ExtResource("7_w1gb5")]
+transform = Transform3D(12.4416, 0, 0, 0, 4.76, 0, 0, 0, 1, 0, 1.9, -44)
+material = ExtResource("8_v2l2b")
+script = ExtResource("10_qehj7")
+
+[node name="Luzes" type="Node3D" parent="Construção/Sala 2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -33)
+
+[node name="Luz sala2 2" type="SpotLight3D" parent="Construção/Sala 2/Luzes"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 10)
+light_color = Color(0.811765, 0.815686, 0.945098, 1)
+shadow_enabled = true
+spot_range = 30.0
+spot_angle = 75.0
+
+[node name="Luz sala2 3" type="SpotLight3D" parent="Construção/Sala 2/Luzes"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, -11)
+light_color = Color(0.811765, 0.815686, 0.945098, 1)
+shadow_enabled = true
+spot_range = 30.0
+spot_angle = 75.0
+
+[node name="Limbo" type="Node3D" parent="Construção/Sala 2"]
+
+[node name="Paredes" parent="Construção/Sala 2/Limbo" instance=ExtResource("5_na1e3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -50.448, -36.4)
+size = Vector3(2, 100, 48.6)
+material = ExtResource("4_cklm2")
+
+[node name="Paredes3" parent="Construção/Sala 2/Limbo" instance=ExtResource("5_na1e3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0499988, -50.448, -19.5)
+size = Vector3(2, 100, 13.7)
+material = ExtResource("4_cklm2")
+
+[node name="Paredes4" parent="Construção/Sala 2/Limbo" instance=ExtResource("5_na1e3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0499988, -50.448, -49.1)
+size = Vector3(2, 100, 13.7)
+material = ExtResource("4_cklm2")
+
+[node name="Paredes2" parent="Construção/Sala 2/Limbo" instance=ExtResource("5_na1e3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -50.448, -36.4)
+size = Vector3(2, 100, 48.6)
+material = ExtResource("4_cklm2")
+
+[node name="Limbokill" type="Area3D" parent="Construção/Sala 2/Limbo" groups=["killarea"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, -33)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Construção/Sala 2/Limbo/Limbokill"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, -1.2)
+shape = SubResource("BoxShape3D_vq5b0")
+
+[node name="Sala 3" type="Node3D" parent="Construção"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48.6)
+
+[node name="Pisos" type="Node3D" parent="Construção/Sala 3"]
+
+[node name="Piso1" parent="Construção/Sala 3/Pisos" instance=ExtResource("3_5bpfp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.5)
+size = Vector3(10, 1, 8)
+material = ExtResource("4_cklm2")
+
+[node name="Piso2" parent="Construção/Sala 3/Pisos" instance=ExtResource("3_5bpfp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -54.6)
+size = Vector3(10, 1, 13)
+material = ExtResource("4_cklm2")
+
+[node name="Paredes" type="Node3D" parent="Construção/Sala 3"]
+
+[node name="Paredes" parent="Construção/Sala 3/Paredes" instance=ExtResource("5_na1e3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9, 4.352, -36.4)
+size = Vector3(2, 9.7, 48.6)
+material = ExtResource("4_cklm2")
+
+[node name="Saidasala3" type="CSGCombiner3D" parent="Construção/Sala 3/Paredes"]
+use_collision = true
+collision_mask = 7
+script = ExtResource("9_p1ljn")
+
+[node name="Paredes2" parent="Construção/Sala 3/Paredes/Saidasala3" instance=ExtResource("5_na1e3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9, 4.352, -36.4)
+size = Vector3(2, 9.7, 48.6)
+material = ExtResource("4_cklm2")
+
+[node name="Buraco" type="CSGCylinder3D" parent="Construção/Sala 3/Paredes/Saidasala3"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.1, 4.552, -13.8)
+operation = 2
+radius = 0.05
+height = 4.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Construção/Sala 3/Paredes/Saidasala3"]
+root_node = NodePath("../Buraco")
+libraries = {
+"": SubResource("AnimationLibrary_ooyop")
+}
+
+[node name="Areaabrir porta secreta" type="Area3D" parent="Construção/Sala 3/Paredes/Saidasala3"]
+collision_mask = 7
+
+[node name="colision" type="CollisionShape3D" parent="Construção/Sala 3/Paredes/Saidasala3/Areaabrir porta secreta"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.801, 4.8, -13.3)
+shape = SubResource("BoxShape3D_iicck")
+
+[node name="Portaautomatica" parent="Construção/Sala 3/Paredes" instance=ExtResource("6_r3vjd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48.3)
+script = null
+
+[node name="Teto" type="Node3D" parent="Construção/Sala 3"]
+
+[node name="Teto1" parent="Construção/Sala 3/Teto" instance=ExtResource("3_5bpfp")]
+transform = Transform3D(0.39123, 0, 0, 0, 1, 0, 0, 0, 0.385, 0, 8.7, -36.481)
+size = Vector3(25, 1, 126.2)
+material = ExtResource("4_cklm2")
+
+[node name="Obstaculos" type="Node3D" parent="Construção/Sala 3"]
+
+[node name="Bloco" parent="Construção/Sala 3/Obstaculos" instance=ExtResource("3_5bpfp")]
+transform = Transform3D(0.259808, 0.5, 0, -0.15, 0.866025, 0, 0, 0, 0.0972, -1.5012, 0, -26.05)
+size = Vector3(7, 1, 21.9)
+material = ExtResource("4_cklm2")
+
+[node name="Bloco4" parent="Construção/Sala 3/Obstaculos" instance=ExtResource("3_5bpfp")]
+transform = Transform3D(0.3, 0, 0, 0, 1, 0, 0, 0, 0.0972, 2.4988, -19, -26.05)
+size = Vector3(7, 1, 21.9)
+material = ExtResource("4_cklm2")
+
+[node name="Bloco2" parent="Construção/Sala 3/Obstaculos" instance=ExtResource("3_5bpfp")]
+transform = Transform3D(0.259808, -0.5, 0, 0.15, 0.866025, 0, 0, 0, 0.0972, 2.4988, 0, -34.05)
+size = Vector3(7, 1, 21.9)
+material = ExtResource("4_cklm2")
+
+[node name="Bloco3" parent="Construção/Sala 3/Obstaculos" instance=ExtResource("3_5bpfp")]
+transform = Transform3D(0.3, 2.98023e-08, 0, 1.93715e-07, 1, 0, 0, 0, 0.0972, -1.7512, 2, -40.7741)
+size = Vector3(2, 1, 7)
+material = ExtResource("4_cklm2")
+
+[node name="Killarea" parent="Construção/Sala 3/Obstaculos" instance=ExtResource("7_w1gb5")]
+transform = Transform3D(12.4416, 0, 0, 0, 4.76, 0, 0, 0, 1, 0, 1.9, -44)
+material = ExtResource("8_v2l2b")
+script = ExtResource("10_qehj7")
+
+[node name="voltarsala2" type="CSGBox3D" parent="Construção/Sala 3/Obstaculos"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -50.9995)
+size = Vector3(11, 7, 0.001)
+material = ExtResource("8_178k4")
+script = ExtResource("8_ec6he")
+
+[node name="Area3D" type="Area3D" parent="Construção/Sala 3/Obstaculos/voltarsala2" groups=["voltar sala 2"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Construção/Sala 3/Obstaculos/voltarsala2/Area3D"]
+shape = SubResource("BoxShape3D_n3wm1")
+
+[node name="Luzes" type="Node3D" parent="Construção/Sala 3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -33)
+
+[node name="Luz sala2 2" type="SpotLight3D" parent="Construção/Sala 3/Luzes"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 10)
+light_color = Color(0.811765, 0.815686, 0.945098, 1)
+shadow_enabled = true
+spot_range = 30.0
+spot_angle = 75.0
+
+[node name="Luz sala2 3" type="SpotLight3D" parent="Construção/Sala 3/Luzes"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, -11)
+light_color = Color(0.811765, 0.815686, 0.945098, 1)
+shadow_enabled = true
+spot_range = 30.0
+spot_angle = 75.0
+
+[node name="Limbo" type="Node3D" parent="Construção/Sala 3"]
+
+[node name="Paredes" parent="Construção/Sala 3/Limbo" instance=ExtResource("5_na1e3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -50.448, -36.4)
+size = Vector3(2, 100, 48.6)
+material = ExtResource("4_cklm2")
+
+[node name="Paredes3" parent="Construção/Sala 3/Limbo" instance=ExtResource("5_na1e3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0499988, -50.448, -19.5)
+size = Vector3(2, 100, 13.7)
+material = ExtResource("4_cklm2")
+
+[node name="Paredes4" parent="Construção/Sala 3/Limbo" instance=ExtResource("5_na1e3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0499988, -50.448, -49.1)
+size = Vector3(2, 100, 13.7)
+material = ExtResource("4_cklm2")
+
+[node name="Paredes2" parent="Construção/Sala 3/Limbo" instance=ExtResource("5_na1e3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -50.448, -36.4)
+size = Vector3(2, 100, 48.6)
+material = ExtResource("4_cklm2")
+
+[node name="Limbokill" type="Area3D" parent="Construção/Sala 3/Limbo" groups=["killarea"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, -33)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Construção/Sala 3/Limbo/Limbokill"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, -1.2)
+shape = SubResource("BoxShape3D_vq5b0")
+
+[node name="Sala 4" type="Node3D" parent="Construção"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.6, 0, -65.8)
+
+[node name="Pisos" type="Node3D" parent="Construção/Sala 4"]
+
+[node name="Pisofalso final" parent="Construção/Sala 4/Pisos" instance=ExtResource("3_5bpfp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20.3)
+collision_layer = 0
+size = Vector3(10, 1, 15.6)
+material = ExtResource("4_cklm2")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Construção/Sala 4/Pisos"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.7)
+use_collision = true
+collision_mask = 7
+
+[node name="Piso1" parent="Construção/Sala 4/Pisos/CSGCombiner3D" instance=ExtResource("3_5bpfp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22)
+size = Vector3(10, 1, 15.6)
+material = ExtResource("4_cklm2")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Construção/Sala 4/Pisos/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -27)
+operation = 2
+size = Vector3(11, 1, 7)
+
+[node name="Paredes" type="Node3D" parent="Construção/Sala 4"]
+
+[node name="Paredes" parent="Construção/Sala 4/Paredes" instance=ExtResource("5_na1e3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9, -40.998, -20.1)
+size = Vector3(2, 100, 16)
+material = ExtResource("4_cklm2")
+
+[node name="Paredes2" parent="Construção/Sala 4/Paredes" instance=ExtResource("5_na1e3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9, -40.9, -20)
+size = Vector3(2, 100, 16)
+material = ExtResource("4_cklm2")
+
+[node name="Paredes3" parent="Construção/Sala 4/Paredes" instance=ExtResource("5_na1e3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0999985, -50.796, -29.2)
+size = Vector3(2, 100, 13.4)
+material = ExtResource("4_cklm2")
+
+[node name="Portaautomatica" parent="Construção/Sala 4/Paredes" instance=ExtResource("6_r3vjd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.6)
+script = null
+
+[node name="Teto" type="Node3D" parent="Construção/Sala 4"]
+
+[node name="Teto1" parent="Construção/Sala 4/Teto" instance=ExtResource("3_5bpfp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.7, -20.3)
+size = Vector3(10, 1, 15.6)
+material = ExtResource("4_cklm2")
+
+[node name="Obstaculos" type="Node3D" parent="Construção/Sala 4"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Construção/Sala 4/Obstaculos"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.7)
+
+[node name="Killarea" parent="Construção/Sala 4/Obstaculos/CSGCombiner3D" instance=ExtResource("7_w1gb5")]
+transform = Transform3D(10.5754, 0, 0, 0, 9.17633, 0, 0, 0, 1, 1.05754, 4.18213, -18)
+size = Vector3(0.8, 1, 1)
+material = ExtResource("8_v2l2b")
+script = ExtResource("10_qehj7")
+
+[node name="Killarea2" parent="Construção/Sala 4/Obstaculos/CSGCombiner3D" instance=ExtResource("7_w1gb5")]
+transform = Transform3D(4.759, 0, 0, 0, 7.693, 0, 0, 0, 1, -2.94246, 5.28213, -18)
+size = Vector3(0.8, 1, 1)
+material = ExtResource("8_v2l2b")
+script = ExtResource("10_qehj7")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Construção/Sala 4/Obstaculos/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15, 1.55, -17.95)
+operation = 2
+size = Vector3(3.3, 2.1, 1.1)
+
+[node name="Luzes" type="Node3D" parent="Construção/Sala 4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -33)
+
+[node name="Luz sala2 2" type="SpotLight3D" parent="Construção/Sala 4/Luzes"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 10)
+light_color = Color(0.811765, 0.815686, 0.945098, 1)
+shadow_enabled = true
+spot_range = 30.0
+spot_angle = 75.0
+
+[node name="Luz sala2 3" type="SpotLight3D" parent="Construção/Sala 4/Luzes"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, -11)
+light_color = Color(0.811765, 0.815686, 0.945098, 1)
+shadow_enabled = true
+spot_range = 30.0
+spot_angle = 75.0
+
+[node name="Caida" type="Node3D" parent="Construção/Sala 4"]
+
+[node name="final" type="Node3D" parent="Construção/Sala 4"]
+
+[node name="Piso1" parent="Construção/Sala 4/final" instance=ExtResource("3_5bpfp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -42, -20.1)
+size = Vector3(10, 1, 15.6)
+material = ExtResource("4_cklm2")
+
+[connection signal="area_entered" from="Construção/Sala inicial/Teto/Saidasala3/Areaabrir porta secreta" to="Construção/Sala inicial/Teto/Saidasala3" method="_on_areaabrir_porta_secreta_area_entered"]
+[connection signal="area_entered" from="Construção/Sala 3/Paredes/Saidasala3/Areaabrir porta secreta" to="Construção/Sala 3/Paredes/Saidasala3" method="_on_areaabrir_porta_secreta_area_entered"]

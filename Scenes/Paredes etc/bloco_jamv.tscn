@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dto3cirr6wj5r"]
+
+[ext_resource type="Texture2D" uid="uid://c4xo2hcjnen8s" path="res://Assets/E O JAMV.jpeg" id="1_xl1nt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2rn2a"]
+albedo_texture = ExtResource("1_xl1nt")
+
+[node name="BLOCO JAMV" type="CSGBox3D"]
+material_override = SubResource("StandardMaterial3D_2rn2a")
+size = Vector3(1, 10, 1)
