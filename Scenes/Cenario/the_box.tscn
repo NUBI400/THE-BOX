@@ -8,11 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://trt4fb328mwu" path="res://Scenes/Paredes etc/portaautomatica.tscn" id="6_r3vjd"]
 [ext_resource type="PackedScene" uid="uid://c5xu38ua7e3up" path="res://Scenes/Paredes etc/Killarea.tscn" id="7_w1gb5"]
 [ext_resource type="Material" uid="uid://bveefb48v1y6n" path="res://Material/voltarsala2material_material_3d.tres" id="8_178k4"]
-[ext_resource type="Script" path="res://Scripts/Killarea scripts/voltarsala2.gd" id="8_ec6he"]
+[ext_resource type="Script" uid="uid://cjrfnc2he8ffo" path="res://Scripts/Killarea scripts/voltarsala2.gd" id="8_ec6he"]
 [ext_resource type="Texture2D" uid="uid://c4xo2hcjnen8s" path="res://Assets/E O JAMV.jpeg" id="8_mmdlf"]
 [ext_resource type="Material" uid="uid://cxupe2rjuo45u" path="res://Material/killarea_material_3d.tres" id="8_v2l2b"]
-[ext_resource type="Script" path="res://Scripts/Saidasala3.gd" id="9_p1ljn"]
-[ext_resource type="Script" path="res://Scripts/Killarea scripts/Killarea.gd" id="10_qehj7"]
+[ext_resource type="Script" uid="uid://dvjtnk1ewuaoc" path="res://Scripts/Saidasala3.gd" id="9_p1ljn"]
+[ext_resource type="Script" uid="uid://jwqf0qpw1wib" path="res://Scripts/Killarea scripts/Killarea.gd" id="10_qehj7"]
 [ext_resource type="PackedScene" uid="uid://dvq53x066r0uw" path="res://Scenes/Paredes etc/mesa.tscn" id="13_amr7r"]
 [ext_resource type="PackedScene" uid="uid://dto3cirr6wj5r" path="res://Scenes/Paredes etc/bloco_jamv.tscn" id="15_0c3en"]
 
@@ -49,8 +49,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ooyop"]
 _data = {
-"porta automatica": SubResource("Animation_dqf6h"),
-"porta automatica fechando": SubResource("Animation_w2xgi")
+&"porta automatica": SubResource("Animation_dqf6h"),
+&"porta automatica fechando": SubResource("Animation_w2xgi")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iicck"]
@@ -66,7 +66,7 @@ size = Vector3(12, 1, 28)
 [node name="Env" parent="." instance=ExtResource("1_wt8sc")]
 
 [node name="Player" parent="." instance=ExtResource("2_fwnxq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1.2, -67)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57582, 0)
 
 [node name="Construção" type="Node" parent="."]
 
@@ -125,7 +125,7 @@ height = 4.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Construção/Sala inicial/Teto/Saidasala3"]
 root_node = NodePath("../Buraco")
 libraries = {
-"": SubResource("AnimationLibrary_ooyop")
+&"": SubResource("AnimationLibrary_ooyop")
 }
 
 [node name="Areaabrir porta secreta" type="Area3D" parent="Construção/Sala inicial/Teto/Saidasala3"]
@@ -330,34 +330,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9, 4.352, -36.4)
 size = Vector3(2, 9.7, 48.6)
 material = ExtResource("4_cklm2")
 
-[node name="Saidasala3" type="CSGCombiner3D" parent="Construção/Sala 3/Paredes"]
-use_collision = true
-collision_mask = 7
-script = ExtResource("9_p1ljn")
-
-[node name="Paredes2" parent="Construção/Sala 3/Paredes/Saidasala3" instance=ExtResource("5_na1e3")]
+[node name="Paredes2" parent="Construção/Sala 3/Paredes" instance=ExtResource("5_na1e3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9, 4.352, -36.4)
 size = Vector3(2, 9.7, 48.6)
 material = ExtResource("4_cklm2")
-
-[node name="Buraco" type="CSGCylinder3D" parent="Construção/Sala 3/Paredes/Saidasala3"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.1, 4.552, -13.8)
-operation = 2
-radius = 0.05
-height = 4.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Construção/Sala 3/Paredes/Saidasala3"]
-root_node = NodePath("../Buraco")
-libraries = {
-"": SubResource("AnimationLibrary_ooyop")
-}
-
-[node name="Areaabrir porta secreta" type="Area3D" parent="Construção/Sala 3/Paredes/Saidasala3"]
-collision_mask = 7
-
-[node name="colision" type="CollisionShape3D" parent="Construção/Sala 3/Paredes/Saidasala3/Areaabrir porta secreta"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.801, 4.8, -13.3)
-shape = SubResource("BoxShape3D_iicck")
 
 [node name="Portaautomatica" parent="Construção/Sala 3/Paredes" instance=ExtResource("6_r3vjd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48.3)
@@ -557,4 +533,3 @@ size = Vector3(10, 1, 15.6)
 material = ExtResource("4_cklm2")
 
 [connection signal="area_entered" from="Construção/Sala inicial/Teto/Saidasala3/Areaabrir porta secreta" to="Construção/Sala inicial/Teto/Saidasala3" method="_on_areaabrir_porta_secreta_area_entered"]
-[connection signal="area_entered" from="Construção/Sala 3/Paredes/Saidasala3/Areaabrir porta secreta" to="Construção/Sala 3/Paredes/Saidasala3" method="_on_areaabrir_porta_secreta_area_entered"]

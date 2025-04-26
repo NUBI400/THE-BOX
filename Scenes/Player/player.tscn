@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://dpcbmmyqgi318"]
 
-[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_0xu1w"]
+[ext_resource type="Script" uid="uid://b7knlsf7nchrx" path="res://Scripts/Player.gd" id="1_0xu1w"]
 [ext_resource type="Shape3D" uid="uid://ft0541ga4xif" path="res://Player/player_agachado_area.tres" id="2_7da40"]
 [ext_resource type="BoxMesh" uid="uid://hgh37msk0nx5" path="res://Player/playerAGACHADO.tres" id="2_muhkj"]
 [ext_resource type="Material" uid="uid://e6rgae2l1s7k" path="res://Material/morte_material_3d.tres" id="4_87x5b"]
@@ -123,10 +123,10 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_omy2r"]
 _data = {
-"Jump": SubResource("Animation_pncry"),
-"Landing": SubResource("Animation_d11q5"),
-"RESET": SubResource("Animation_l7n5h"),
-"Roll": SubResource("Animation_8igky")
+&"Jump": SubResource("Animation_pncry"),
+&"Landing": SubResource("Animation_d11q5"),
+&"RESET": SubResource("Animation_l7n5h"),
+&"Roll": SubResource("Animation_8igky")
 }
 
 [sub_resource type="BoxMesh" id="BoxMesh_c8rxc"]

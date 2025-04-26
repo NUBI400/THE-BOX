@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://trt4fb328mwu"]
 
 [ext_resource type="PackedScene" uid="uid://cdasoe15rhxaa" path="res://Scenes/Paredes etc/paredes.tscn" id="1_bu0km"]
-[ext_resource type="Script" path="res://Scripts/Portaautomatica.gd" id="1_xllbd"]
+[ext_resource type="Script" uid="uid://beu4snnr1qr3m" path="res://Scripts/Portaautomatica.gd" id="1_xllbd"]
 [ext_resource type="Material" uid="uid://b7alcmlv31y7" path="res://Material/Banheiro_material_3d.tres" id="2_nmp4r"]
 
 [sub_resource type="Animation" id="Animation_ck7q2"]
@@ -86,8 +86,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6jwxr"]
 _data = {
-"porta automatica": SubResource("Animation_ck7q2"),
-"porta automatica fechando": SubResource("Animation_5pdld")
+&"porta automatica": SubResource("Animation_ck7q2"),
+&"porta automatica fechando": SubResource("Animation_5pdld")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gs78u"]
